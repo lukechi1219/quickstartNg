@@ -1,4 +1,38 @@
 <h1>
   {{title}}
 </h1>
-<pre>{{data|async|json}}</pre>
+
+<!--
+<pre>{{races|json}}</pre>
+<pre>{{races|async|json}}</pre>
+ -->
+
+<div class="card">
+
+  <div class="race_list">
+    <a class="go_next" id="go_next" href="#" onclick="TimeBarHandler.clickGoNextRace()">Next</a>
+    <a class="prev_race no_prev" id="prev_race" href="#" onclick="javascript:TimeBarHandler.previousPage();"><%=langMessage.get("form.text.prev") %></a>
+
+    <div class="slide_wrap">
+
+      <ul id="timeBarRaceList" class="slide ul_flat clearfix">
+
+        <li *ngFor="let race of races | raceMtrFilter"
+            id="timebar_race_{{race.id}}" class="race"
+            onclick="TimeBarHandler.clickTimeBarRace(this)" title="">
+          <a>
+            <div class="race_icon">
+              <span class="circle {{race.gameTypeClass}}">{{race.gameTypeClass}}</span></div>
+            <div class="race_data">
+              <h4>{{race.locationName}}</h4>
+              <p>R{{race.raceNO}}<span>{{race.minutesToRun}} mins</span></p></div>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+    <a class="next_race no_next" id="next_race" href="#" onclick="javascript:TimeBarHandler.nextPage();">Next</a>
+  </div>
+  <a class="btn_orange Go_live" id="live_tv_top" href="#"><span>Go</span>Live</a>
+
+</div>
