@@ -13,6 +13,7 @@ import 'rxjs/add/operator/map';
 export class AppComponent {
   title = 'app works!';
   races: Race[];
+  data: any;
 
   constructor(private http: Http) {
   }
@@ -20,11 +21,13 @@ export class AppComponent {
   ngOnInit() {
     const url = '/member/act/queryRaceData?raceVersion=-1&raceCloseVersion=-1&locationSettingVersion=-1&siteRaceVersion=-1&toteVersion=-1&resultVersion=-1&gameType=-1';
 //    const url = '/opendata/datalist/apiAccess?scope=resourceAquire&rid=0b544701-fb47-4fa9-90f1-15b1987da0f5';
+//    const url = '/w/djjson/MLISearchJSON.djjson?P=DVUL';
 
     this.http.get(url)
       .map(x => x.json())
       .subscribe(
-        (data) => this.handleRaceData(data),
+//        (data) => this.handleRaceData(data),
+        (data) => this.data = data,
         (err) => console.error(err)
       );
     }
